@@ -1,10 +1,18 @@
 import memesData from "./memesData"
+import React from "react";
 
 export default function MemeForm(){
+
+    const memeArray = memesData.data.memes;
+    const num = Math.floor(Math.random() * memeArray.length)
+
+
+
+    const [urls, setUrl] = React.useState(memeArray[num].url)
+
     function memeImage(){
-        const memeArray = memesData.data.memes;
         const num = Math.floor(Math.random() * memeArray.length)
-        const url = memeArray[num].url;
+        setUrl(memeArray[num].url)
     }
     return(
         <div className="meme-form">
@@ -15,6 +23,9 @@ export default function MemeForm(){
             <div className="meme-form-button">
                 <button className="meme-form-button-1" type="button" onClick={memeImage}>Get new meme image</button>
                 <button className="meme-form-button-2" type="button">Generate meme</button>
+            </div>
+            <div className="generate">
+                <img className="generate-image" src={urls} alt="not-available" />
             </div>
         </div>
     )
