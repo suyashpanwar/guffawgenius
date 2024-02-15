@@ -3,16 +3,28 @@ import React from "react";
 
 export default function MemeForm(){
 
-    const memeArray = memesData.data.memes;
-    const num = Math.floor(Math.random() * memeArray.length)
+
+    const [meme, setMeme] = React.useState({
+        topText : "",
+        bottomText : "",
+        randomImage : "http://i.imgflip.com/1bij.jpg"
+    })
+
+    const [memeImage, setMemeImage] = React.useState(memesData)
 
 
+    function memeImageSetter(){
+        const memesArray = memeImage.data.memes
+        const randomNumber = Math.floor(Math.random() * memesArray.length)
+        const urls = memesArray[randomNumber].url
 
-    const [urls, setUrl] = React.useState(memeArray[num].url)
-
-    function memeImage(){
-        const num = Math.floor(Math.random() * memeArray.length)
-        setUrl(memeArray[num].url)
+        setMeme(prevState=>{
+            return{
+                ...prevState,
+                topText : "Hello Bhai",
+                randomImage : urls
+            }
+        })
     }
     return(
         <div className="meme-form">
@@ -21,11 +33,11 @@ export default function MemeForm(){
                 <input className="input-2" type="text" placeholder="BOTTOM TEXT" />
             </div>
             <div className="meme-form-button">
-                <button className="meme-form-button-1" type="button" onClick={memeImage}>Get new meme image</button>
+                <button className="meme-form-button-1" type="button" onClick={memeImageSetter}>Get new meme image</button>
                 <button className="meme-form-button-2" type="button">Generate meme</button>
             </div>
             <div className="generate">
-                <img className="generate-image" src={urls} alt="not-available" />
+                <img className="generate-image" src={meme.randomImage} alt="not-available" />
             </div>
         </div>
     )
