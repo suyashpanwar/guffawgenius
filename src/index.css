@@ -87,3 +87,16 @@ body {
   justify-content: center;
   align-items: center;
 }
+.upperText{
+  position: fixed;
+  margin-bottom: 450px;
+  font-weight: bolder;
+  font-size: 60px;
+}
+
+.lowerText{
+  position: fixed;
+  margin-top: 450px;
+  font-weight: bolder;
+  font-size: 60px;
+}
